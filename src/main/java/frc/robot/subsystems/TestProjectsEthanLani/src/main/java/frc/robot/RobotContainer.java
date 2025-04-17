@@ -29,8 +29,9 @@ public class RobotContainer {
     configureBindings();
   }
 
-  public Command Swerve = 
-  swerve.specialDriveCommand(m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX, m_driverController::getRightY);
+  // public Command Swerve = swerve.specialDriveCommand(() -> m_driverController.getLeftX(), () -> m_driverController.getLeftY(), () -> m_driverController.getRightX(), () -> m_driverController.getRightY());
+  // public Command Swerve = swerve.specialDriveCommand(MathUtil.applyDeadband(m_driverController::getLeftX, 0.15), MathUtil.applyDeadband(m_driverController::getLeftY, 0.15), MathUtil.applyDeadband(m_driverController::getRightX, 0.15), MathUtil.applyDeadband(m_driverController::getRightY, 0.15));
+  public Command Swerve = swerve.specialDriveCommand(MathUtil.applyDeadband(m_driverController::getLeftX, 0.15), MathUtil.applyDeadband(m_driverController::getLeftY, 0.15), MathUtil.applyDeadband(m_driverController::getRightX, 0.15));
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -42,11 +43,6 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    //For SWERVE DRIVE
-    
-
     //For the TESTHOOD
     m_driverController.rightTrigger().whileTrue(runHoodMotor.setSpeed());
     m_driverController.rightTrigger().whileFalse(runHoodMotor.stopTheStupidMotor());
